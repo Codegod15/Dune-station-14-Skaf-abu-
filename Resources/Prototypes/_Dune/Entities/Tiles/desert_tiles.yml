@@ -1,0 +1,186 @@
+- type: tile
+  id: FloorDesertDeepSand
+  name: tiles-desert-floor
+  sprite: /Textures/Tiles/Planet/Desert/desert.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorDesertShallowSand
+  name: tiles-low-desert-floor
+  sprite: /Textures/Tiles/Planet/Desert/low_desert.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorDesertRock
+  name: "Desert Rock"
+  sprite: /Textures/Tiles/Planet/basalt.png
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorDesertDrumSand
+  name: "Drum Sand"
+  sprite: /Textures/Tiles/grasslight.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorDesertSpiceSand
+  name: "Spice Sand"
+  sprite: /Textures/Tiles/Asteroid/asteroid_red.png
+  variants: 13
+  placementVariants:
+  - 0.8
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0116
+  - 0.0116
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: entity
+  id: FloorDesertSpiceSandEntity
+  name: spice sand
+  description: Spicy sand
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: FloorOccluder
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  #- type: Clickable
+  - type: Sprite
+    sprite: _Dune/Tiles/Sand/spice_sand.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: spice_sand
+  #- type: SolutionContainerManager
+  #  solutions:
+  #    spice:
+  #      maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
+  #      reagents:
+  #      - ReagentId: Water
+  #        Quantity: 9999999
+  #- type: SolutionRegeneration
+  #  solution: tank
+  #  generated:
+  #    reagents:
+  #    - ReagentId: Water
+  #      Quantity: 100
+  #- type: DrainableSolution
+  #  solution: spice
+  #- type: SpeedModifierContacts
+  #  walkSpeedModifier: 0.5
+  #  sprintSpeedModifier: 0.5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - SlipLayer
+        mask:
+        - ItemMask
+        density: 1000
+        hard: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
+
+- type: entity
+  id: FloorDesertDrumSandEntity
+  name: drum sand
+  description: Loud sand
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: FloorOccluder
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Sprite
+    sprite: _Dune/Tiles/Sand/drum_sand.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: drum_sand
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - SlipLayer
+        mask:
+        - ItemMask
+        density: 1000
+        hard: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
